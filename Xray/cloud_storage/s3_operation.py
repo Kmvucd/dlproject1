@@ -1,7 +1,7 @@
 import os
 import sys
-from Xray.exception import XrayException
-from logger import logging
+from Xray.exception import XRayException
+from Xray.logger import logging
 
 class S3operation:
     
@@ -14,7 +14,7 @@ class S3operation:
             
             os.system(command)
         except Exception as e:
-            raise XrayException(e, sys)
+            raise XRayException(e, sys)
         
     def sync_folder_from_s3(self, folder: str, bucket_name: str, bucket_folder_name: str)-> None: # Downloading
         try:
@@ -25,4 +25,4 @@ class S3operation:
             )
             os.system(command)
         except Exception as e:
-            raise XrayException(e, sys)
+            raise XRayException(e, sys)
