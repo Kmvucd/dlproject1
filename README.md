@@ -1,4 +1,4 @@
 # dlproject1
 This is the implementation of end to end deep learning project
 
-## Steps 
+## Steps to follow
