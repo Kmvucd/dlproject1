@@ -5,6 +5,7 @@ This is the implementation of end to end deep learning project
 
 - constants
 - congif_entity
+- artifact_entity
 - components
 - pipeline
 - main
