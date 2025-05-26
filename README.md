@@ -55,3 +55,11 @@ Now, it will ask for access key and secret access key and region, use downloaded
 7. Data Ingestion Flowchart
 ![alt text]({631906F3-B1BC-4845-9997-0E414DB08A9C}.png)
 
+8. Data Transformation Flowchart
+![alt text]({720710E5-F65B-4270-9099-6F17FCD33F4A}.png)
+
+9. Model Trainer Flowchart
+![alt text]({69919ED2-4A0A-4DE0-8A72-9891A4026528}.png)
+
+10. Check bentoml models list 
+bentoml models list
