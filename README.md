@@ -61,5 +61,17 @@ Now, it will ask for access key and secret access key and region, use downloaded
 9. Model Trainer Flowchart
 ![alt text]({69919ED2-4A0A-4DE0-8A72-9891A4026528}.png)
 
+main.py 
+  └▶ TrainPipeline.run_pipeline()
+        ├▶ start_data_ingestion()
+        ├▶ start_data_transformation()
+        └▶ start_model_trainer()
+               └▶ ModelTrainer.initiate_model_trainer()
+                      ├▶ self.train()    ← Training loop
+                      ├▶ self.test()     ← Evaluation
+                      ├▶ torch.save(...) ← Save `.pt` model
+                      └▶ bentoml.pytorch.save_model(...) ← Register model
+
+
 10. Check bentoml models list 
 bentoml models list

@@ -19,7 +19,7 @@ setup(
     version = "0.0.1", 
     author = "Vimarish K M",
     author_email = "vimarish18100@gmail.com",
-    package = find_packages(),
+    package = find_packages(include=["Xray", "Xray.*"]),
     install_requires = get_requirements(r"C:\\Users\\vimar\\OneDrive\\Documents\\Projects\\dlproject1\\requirements_dev.txt"),
     
 )

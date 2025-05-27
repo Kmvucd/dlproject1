@@ -132,11 +132,12 @@ class DataTransformation:
             logging.info(
                 "Entered the initiate_data_transformation method of Data transformation class"
             )
-
+            # get transforms
             train_transform: transforms.Compose = self.transforming_training_data()
 
             test_transform: transforms.Compose = self.transforming_testing_data()
 
+            #save transform functions
             os.makedirs(self.data_transformation_config.artifact_dir, exist_ok=True)
 
             joblib.dump(
@@ -147,10 +148,12 @@ class DataTransformation:
                 test_transform, self.data_transformation_config.test_transforms_file
             )
 
+            # create data loaders
             train_loader, test_loader = self.data_loader(
                 train_transform=train_transform, test_transform=test_transform
             )
-
+            
+            # Return an artifact
             data_transformation_artifact: DataTransformationArtifact = DataTransformationArtifact(
                 transformed_train_object=train_loader,
                 transformed_test_object=test_loader,
