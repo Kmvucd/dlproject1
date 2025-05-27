@@ -1,6 +1,7 @@
 service: "Xray.ml.model.model_service:svc"
+name: xray_service
 labels:
-    owner: ineuron-team
+    owner: vimarish
     stage: dev
 include:
     - "Xray/ml/model/model_service.py"
