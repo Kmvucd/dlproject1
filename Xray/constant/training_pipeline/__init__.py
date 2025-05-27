@@ -54,6 +54,9 @@ TRAINED_MODEL_DIR: str = "trained_model"
 
 TRAINED_MODEL_NAME: str = "model.pt"
 
+# streamlit component
+# TRAINED_PKL_MODEL_NAME: str = "model.pkl"
+
 DEVICE: torch.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 STEP_SIZE: int = 6

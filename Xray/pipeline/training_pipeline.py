@@ -22,6 +22,10 @@ from Xray.entity.config_entity import (
 from Xray.exception import XRayException
 from Xray.logger import logging
 
+# streamlit component
+import pickle
+import os
+
 class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config=DataIngestionConfig()
@@ -116,7 +120,8 @@ class TrainPipeline:
 
         except Exception as e:
             raise XRayException(e, sys)
-        
+    
+    ## bentoml component    
     def start_model_pusher(self) -> ModelPusherArtifact:
         logging.info("Entered the start_model_pusher method of TrainPipeline class")
 
@@ -131,7 +136,21 @@ class TrainPipeline:
 
         except Exception as e:
             raise XRayException(e, sys)
-               
+    
+    ## streamlit component
+    # def start_model_pusher(self, model_trainer_artifact: ModelTrainerArtifact):
+    #     logging.info("Entered the start_model_pusher method of TrainPipeline class")
+        
+    #     try:
+    #         model_pusher = ModelPusher(model_trainer_artifact=model_trainer_artifact,
+    #                                     model_pusher_config=self.model_pusher_config
+    #                                     )
+    #         logging.info("Exited the start_model_pusher method of TrainPipeline class")
+     
+    #         return model_pusher.initiate_model_pusher()
+    #     except Exception as e:
+    #         raise XRayException(e, sys)
+        
     def run_pipeline(self) -> None:
         logging.info("Entered the run_pipeline method of TrainPipeline class")
 
@@ -150,19 +169,31 @@ class TrainPipeline:
                 )
             )
             
+            ## streamlit component
+            # with open(self.model_trainer_config.trained_pkl_model_path, "wb") as f:
+            #     pickle.dump(model_trainer_artifact, f)
+
+            
+            logging.info("Saved model_trainer_artifact.pkl for use in app.py")
+
+            
             model_evaluation_artifact: ModelEvaluationArtifact = (
                 self.start_model_evaluation(
                     model_trainer_artifact=model_trainer_artifact,
                     data_transformation_artifact=data_transformation_artifact
                 )
             )
-            
+            # bentoml component
             model_pusher_artifact = self.start_model_pusher()
+            
+            # streamlit component
+            # model_pusher_artifact = self.start_model_pusher(model_trainer_artifact)
 
             logging.info("Exited the run_pipeline method of TrainPipeline class")
 
         except Exception as e:
             raise XRayException(e, sys) 
+
 if __name__ == "__main__":
         train_pipeline = TrainPipeline()
         train_pipeline.start_data_ingestion()

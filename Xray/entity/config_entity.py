@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from torch import device
 from Xray.constant.training_pipeline import *
 
+# streamlit component
+# from Xray.constant.training_pipeline import TRAINED_PKL_MODEL_NAME
 
 @dataclass
 class DataIngestionConfig:
@@ -65,7 +67,12 @@ class ModelTrainerConfig:
 
         self.trained_model_path: int = os.path.join(
             self.artifact_dir, TRAINED_MODEL_NAME
-        )
+        ) 
+        
+        #streamlit component
+        # self.trained_pkl_model_path: int = os.path.join(
+        #     self.artifact_dir, TRAINED_PKL_MODEL_NAME
+        # )   
 
         self.train_transforms_key: str = TRAIN_TRANSFORMS_KEY
 

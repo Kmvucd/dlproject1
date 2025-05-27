@@ -73,5 +73,13 @@ main.py
                       └▶ bentoml.pytorch.save_model(...) ← Register model
 
 
-10. Check bentoml models list 
-bentoml models list
+10. Code deployment in two different ways, one is using BentoML and other is using streamlit to predict
+the input data 
+
+a. For BentoML, First uncomment bentoml components especially in modelpusher, training, config, constant
+Then run python main.py, once it is done, run
+bentoml serve xray_service:5mz4ykj3ic7izvgs (keeps on changing)
+
+b. For Streamlit, First uncomment streamlit components especially in modelpusher, training, config, constant
+Then run python main.py, once it is done, run
+streamlit run app.py, that will take me to the localhost

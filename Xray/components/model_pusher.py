@@ -1,16 +1,28 @@
 import os
 import sys
+# streamlit component
+# from Xray.cloud_storage.s3_ops import S3_Operation_for_streamlit
 
 from Xray.entity.artifact_entity import ModelPusherArtifact
+from Xray.entity.artifact_entity import ModelTrainerArtifact
 from Xray.entity.config_entity import ModelPusherConfig
 from Xray.exception import XRayException
 from Xray.logger import logging
 
 
 class ModelPusher:
-    def __init__(self, model_pusher_config: ModelPusherConfig):
+    def __init__(self
+                # streamlit component 
+                # , model_trainer_artifact: ModelTrainerArtifact
+                ,model_pusher_config: ModelPusherConfig):
+        
         self.model_pusher_config = model_pusher_config
-
+        
+        # streamlit component
+        # self.model_trainer_artifact = model_trainer_artifact
+        # self.s3 = S3_Operation_for_streamlit()
+    
+    # Needed for bentoml
     def build_and_push_bento_image(self):
         logging.info("Entered build_and_push_bento_image method of ModelPusher class")
 
@@ -52,8 +64,7 @@ class ModelPusher:
         except Exception as e:
             raise XRayException(e, sys)
         
-
-
+    ## for bentoml 
     def initiate_model_pusher(self) -> ModelPusherArtifact:
         """
         Method Name :   initiate_model_pusher
@@ -63,6 +74,7 @@ class ModelPusher:
         """
         logging.info("Entered initiate_model_pusher method of ModelPusher class")
 
+        # bentoml component 
         try:
             self.build_and_push_bento_image()
 
@@ -77,3 +89,28 @@ class ModelPusher:
 
         except Exception as e:
             raise XRayException(e, sys)
+      
+    # streamlit component  
+    # def initiate_model_pusher(self):
+    #     """
+    #     Method Name :   initiate_model_pusher
+    #     Description :   This method initiates model pusher.
+
+    #     Output      :   Model pusher artifact
+    #     """
+    #     logging.info("Entered initiate_model_pusher method of ModelPusher class")
+
+    #     # streamlit component
+    #     try:
+    #         # Uploading the best model to s3 bucket
+    #         self.s3.upload_file(
+    #             self.model_trainer_artifact.trained_model_path,
+    #             "model.pt",
+    #             "xraylung",
+    #             remove=False,
+    #         )
+    #         logging.info("Uploaded best model to s3 bucket")
+    #         logging.info("Exited initiate_model_pusher method of ModelTrainer class")
+        
+    #     except Exception as e:
+    #         raise XRayException(e, sys)
